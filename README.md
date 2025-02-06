@@ -116,6 +116,44 @@ Displays a list of current albums in Immich.
 
 ---
 
+## ✅ Running Unit Tests
+
+The project includes **comprehensive unit tests** using `pytest`, covering:
+- **AI-powered analysis** (BLIP, Scene Recognition, Object Detection)
+- **Database connection handling**
+- **Immich API interactions** (fetching images, uploading metadata)
+- **Reverse geocoding**
+- **Album name formatting**
+
+### **1️⃣ Install Testing Dependencies**
+```sh
+pip install pytest pillow requests
+```
+
+### **2️⃣ Run All Tests
+```sh
+pytest tests/
+```
+
+### **3️⃣ Run a Specific Test
+```sh
+pytest tests/tests.py
+```
+
+### **4️⃣ View Detailed Test Output
+To see detailed logging and output for debugging, run:
+```sh
+pytest -v tests/
+```
+
+### **5️⃣ Run Tests with Coverage Report
+```sh
+pytest --cov=your_project_directory
+```
+
+**✅ Ensure all tests pass before deploying your changes! **🚀
+---
+
 ## 📂 Project Structure
 
 ```
@@ -149,6 +187,10 @@ photo-analyzer/
 │   ├── logger.py          # Logging configuration (console & file)
 │   ├── model_loader.py    # Centralized model loading
 │
+├── tests/
+│   ├── test_analysis.py   # Unit tests for analysis modules
+│   ├── test_image.jpg     # Sample test image
+│
 └── logs/
     ├── app.log            # Log file for debugging
 ```
@@ -161,24 +203,7 @@ photo-analyzer/
 - **AI model loading refactored** to `utils/model_loader.py`.
 - **Clustering parameters** now configurable via `config.py`.
 - **Utility functions centralized** in `utils/helpers.py`.
-
----
-
-## 🛠️ Troubleshooting
-
-### **Database Connection Issues**
-- Ensure PostgreSQL is running and configured:
-  ```sh
-  psql -h localhost -U your_db_user -d immich_db
-  ```
-- The connection pool manages connections automatically.
-
-### **Immich API Issues**
-- Ensure Immich is accessible at the configured `IMMICH_URL`.
-- Test API connectivity:
-  ```sh
-  curl -H "Authorization: Bearer your_immich_api_key" http://192.168.0.217:2283/api/albums
-  ```
+- **Unit tests added** using `unittest.mock` and a local test image.
 
 ---
 
@@ -193,23 +218,6 @@ This means:
 For more details, see: [https://unlicense.org](https://unlicense.org)
 
 ---
-
-## 🤝 Contributing
-Contributions, issues, and feature requests are welcome!
-
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/fooBar`).
-3. Commit your changes (`git commit -am 'Add some fooBar'`).
-4. Push to the branch (`git push origin feature/fooBar`).
-5. Create a new Pull Request.
-
----
-
-## ⭐ Acknowledgments
-- **Hugging Face Transformers** for AI models.
-- **Immich** for image management.
-- **PostgreSQL** for structured data storage.
-- **OpenStreetMap** for reverse geocoding.
 
 🔥 **Automate your image processing with AI-powered metadata and smart albums!** 🚀
 

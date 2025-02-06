@@ -1,8 +1,9 @@
-requests
-numpy
-psycopg2
-scikit-learn
-pillow
 torch
-torchvision
 transformers
+Pillow
+psycopg2-binary
+numpy
+scikit-learn
+requests
+logging
+pytest

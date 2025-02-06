@@ -2,14 +2,14 @@ import pytest
 from unittest.mock import patch, MagicMock
 from PIL import Image
 
-from analysis.blip import analyze_caption
-from analysis.scene import analyze_scene
-from analysis.object import analyze_object
-from database.connection import get_connection, release_connection
-from immich_api.client import fetch_images
-from immich_api.uploader import upload_metadata
-from utils.geocode import reverse_geocode
-from utils.helpers import format_album_name
+from photo_analyzer.analysis.blip import analyze_caption
+from photo_analyzer.analysis.scene import analyze_scene
+from photo_analyzer.analysis.object import analyze_object
+from photo_analyzer.database.connection import get_connection, release_connection
+from photo_analyzer.immich_api.client import fetch_images
+from photo_analyzer.immich_api.uploader import upload_metadata
+from photo_analyzer.utils.geocode import reverse_geocode
+from photo_analyzer.utils.helpers import format_album_name
 
 @pytest.fixture(scope="module")
 def test_image():

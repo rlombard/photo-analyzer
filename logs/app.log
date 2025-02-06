@@ -1,0 +1,3 @@
+2025-02-06 18:51:05,338 [INFO] ✅ BLIP model 'Salesforce/blip-image-captioning-base' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/models.
+2025-02-06 18:51:22,282 [INFO] ✅ Scene recognition model 'nateraw/vit-base-beans' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/models.
+2025-02-06 18:51:32,685 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/models.

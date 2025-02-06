@@ -22,7 +22,8 @@ MODEL_SCENE = "nateraw/vit-base-beans"
 MODEL_OBJECTS = "facebook/detr-resnet-50"
 
 # Model Cache Directory
-# This directory is used to store/download the models.
-# For example, if your download_models.py is in the utils folder,
-# then the models will be saved in ../models relative to utils.
 MODEL_CACHE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "models"))
+
+# Clustering Parameters
+TIME_CLUSTERING_EPS = 86400  # 1 day in seconds
+TIME_CLUSTERING_MIN_SAMPLES = 3  # Minimum images per cluster

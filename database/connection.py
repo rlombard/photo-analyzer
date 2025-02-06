@@ -1,61 +1,42 @@
 import psycopg2
+from psycopg2 import pool
 from config import DB_CONFIG
 from utils.logger import logger
 
-def connect_db():
-    """
-    Establish a connection to the PostgreSQL database.
-    If the connection succeeds, ensure required tables exist.
-    """
+# Initialize connection pool
+db_pool = None
+
+def init_db_pool():
+    global db_pool
+    if db_pool is None:
+        try:
+            db_pool = psycopg2.pool.SimpleConnectionPool(
+                minconn=1,
+                maxconn=10,  # Adjust max connections as needed
+                **DB_CONFIG
+            )
+            logger.info("✅ Database connection pool initialized.")
+        except Exception as e:
+            logger.error(f"❌ Failed to initialize database connection pool: {e}")
+            raise
+
+def get_connection():
+    """ Get a connection from the pool """
     try:
-        conn = psycopg2.connect(**DB_CONFIG)
-        logger.info("✅ Successfully connected to the PostgreSQL database.")
-        ensure_tables_exist(conn)
-        return conn
+        if db_pool is None:
+            init_db_pool()
+        return db_pool.getconn()
     except Exception as e:
-        logger.error(f"❌ Failed to connect to PostgreSQL: {e}")
-        return None  # Return None instead of crashing
+        logger.error(f"❌ Error getting database connection: {e}")
+        return None
 
-def ensure_tables_exist(conn):
-    """
-    Ensure the required tables exist in the database.
-    If missing, create them.
-    """
-    try:
-        cur = conn.cursor()
-        
-        # SQL to check if the table exists
-        cur.execute("""
-            SELECT EXISTS (
-                SELECT FROM information_schema.tables 
-                WHERE table_name = 'image_metadata'
-            );
-        """)
-        table_exists = cur.fetchone()[0]
+def release_connection(conn):
+    """ Release a connection back to the pool """
+    if conn:
+        db_pool.putconn(conn)
 
-        if not table_exists:
-            logger.warning("⚠️ Table 'image_metadata' does not exist. Creating it now...")
-            cur.execute("""
-                CREATE TABLE image_metadata (
-                    id SERIAL PRIMARY KEY,
-                    image_id TEXT UNIQUE NOT NULL,
-                    taken_at TIMESTAMP,
-                    latitude FLOAT,
-                    longitude FLOAT,
-                    caption TEXT,
-                    scene TEXT,
-                    object TEXT,
-                    faces TEXT[],
-                    albums TEXT[],
-                    location TEXT,
-                    processed_at TIMESTAMP DEFAULT NOW()
-                );
-            """)
-            conn.commit()
-            logger.info("✅ Table 'image_metadata' successfully created.")
-        else:
-            logger.info("✅ Table 'image_metadata' already exists.")
-
-        cur.close()
-    except Exception as e:
-        logger.error(f"❌ Error ensuring database tables exist: {e}")
+def close_pool():
+    """ Close all connections in the pool """
+    if db_pool:
+        db_pool.closeall()
+        logger.info("✅ Database connection pool closed.")

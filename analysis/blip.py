@@ -1,15 +1,14 @@
 import torch
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from utils.logger import logger
-from config import MODEL_BLIP  # Import model selection from config.py
+from config import MODEL_BLIP, MODEL_CACHE_DIR
 
-# Load BLIP model
 try:
-    processor = BlipProcessor.from_pretrained(MODEL_BLIP)
-    model = BlipForConditionalGeneration.from_pretrained(MODEL_BLIP)
-    logger.info(f"✅ BLIP model '{MODEL_BLIP}' loaded successfully.")
+    processor = BlipProcessor.from_pretrained(MODEL_BLIP, cache_dir=MODEL_CACHE_DIR)
+    model = BlipForConditionalGeneration.from_pretrained(MODEL_BLIP, cache_dir=MODEL_CACHE_DIR)
+    logger.info(f"✅ BLIP model '{MODEL_BLIP}' loaded successfully from cache directory {MODEL_CACHE_DIR}.")
 except Exception as e:
-    logger.error(f"❌ Failed to load BLIP model '{MODEL_BLIP}': {e}")
+    logger.error(f"❌ Failed to load BLIP model '{MODEL_BLIP}' from cache directory {MODEL_CACHE_DIR}: {e}")
     raise
 
 def analyze_caption(image):
@@ -23,4 +22,4 @@ def analyze_caption(image):
         return generated_caption
     except Exception as e:
         logger.error(f"❌ Error generating caption: {e}")
-        return None  # Return None instead of crashing
+        return None

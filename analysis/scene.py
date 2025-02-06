@@ -1,15 +1,14 @@
 import torch
 from transformers import ViTForImageClassification, ViTFeatureExtractor
 from utils.logger import logger
-from config import MODEL_SCENE  # Import model selection
+from config import MODEL_SCENE, MODEL_CACHE_DIR
 
-# Load Scene Recognition Model
 try:
-    feature_extractor = ViTFeatureExtractor.from_pretrained(MODEL_SCENE)
-    model = ViTForImageClassification.from_pretrained(MODEL_SCENE)
-    logger.info(f"✅ Scene recognition model '{MODEL_SCENE}' loaded successfully.")
+    feature_extractor = ViTFeatureExtractor.from_pretrained(MODEL_SCENE, cache_dir=MODEL_CACHE_DIR)
+    model = ViTForImageClassification.from_pretrained(MODEL_SCENE, cache_dir=MODEL_CACHE_DIR)
+    logger.info(f"✅ Scene recognition model '{MODEL_SCENE}' loaded successfully from cache directory {MODEL_CACHE_DIR}.")
 except Exception as e:
-    logger.error(f"❌ Failed to load scene recognition model '{MODEL_SCENE}': {e}")
+    logger.error(f"❌ Failed to load scene recognition model '{MODEL_SCENE}' from cache directory {MODEL_CACHE_DIR}: {e}")
     raise
 
 def analyze_scene(image):
@@ -23,4 +22,4 @@ def analyze_scene(image):
         return detected_scene
     except Exception as e:
         logger.error(f"❌ Error classifying scene: {e}")
-        return None  # Return None instead of crashing
+        return None

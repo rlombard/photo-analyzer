@@ -1,15 +1,14 @@
 import torch
 from transformers import ViTForImageClassification, ViTFeatureExtractor
 from utils.logger import logger
-from config import MODEL_OBJECTS  # Import model selection
+from config import MODEL_OBJECTS, MODEL_CACHE_DIR
 
-# Load Object Detection Model
 try:
-    feature_extractor = ViTFeatureExtractor.from_pretrained(MODEL_OBJECTS)
-    model = ViTForImageClassification.from_pretrained(MODEL_OBJECTS)
-    logger.info(f"✅ Object detection model '{MODEL_OBJECTS}' loaded successfully.")
+    feature_extractor = ViTFeatureExtractor.from_pretrained(MODEL_OBJECTS, cache_dir=MODEL_CACHE_DIR)
+    model = ViTForImageClassification.from_pretrained(MODEL_OBJECTS, cache_dir=MODEL_CACHE_DIR)
+    logger.info(f"✅ Object detection model '{MODEL_OBJECTS}' loaded successfully from cache directory {MODEL_CACHE_DIR}.")
 except Exception as e:
-    logger.error(f"❌ Failed to load object detection model '{MODEL_OBJECTS}': {e}")
+    logger.error(f"❌ Failed to load object detection model '{MODEL_OBJECTS}' from cache directory {MODEL_CACHE_DIR}: {e}")
     raise
 
 def analyze_object(image):
@@ -23,4 +22,4 @@ def analyze_object(image):
         return detected_object
     except Exception as e:
         logger.error(f"❌ Error detecting objects: {e}")
-        return None  # Return None instead of crashing
+        return None

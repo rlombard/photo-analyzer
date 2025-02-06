@@ -27,6 +27,33 @@ A Python-based image processing system that:
 
 ---
 
+## Pre-download Models
+
+Before running the application, you can pre-download the required models by running the `download_models.py` script located in the `utils` folder. This script downloads and caches the following models into the `../models` directory:
+
+- **BLIP** for image captioning (`Salesforce/blip-image-captioning-base`)
+- **Scene recognition** (`nateraw/vit-base-beans`)
+- **Object detection** (`facebook/detr-resnet-50`)
+
+### How to Download Models
+
+1. Ensure you have installed the required packages:
+```sh
+pip install torch transformers
+```
+
+2. Navigate to the ```utils``` directory:
+```sh
+cd utils
+```
+
+3. run the script:
+```sh
+python download_models.py
+```
+
+This will download the models and save them in the ../models directory relative to the utils folder, so that your main application can quickly load them from the local cache.
+
 ## Installation
 
 ### Clone the Repository

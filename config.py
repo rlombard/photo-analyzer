@@ -1,4 +1,4 @@
-# config.py
+import os
 
 # Immich API Configuration
 IMMICH_URL = "http://192.168.0.217:2283"
@@ -17,6 +17,12 @@ DB_CONFIG = {
 GEOCODING_URL = "https://nominatim.openstreetmap.org/reverse"
 
 # Model Selection
-MODEL_BLIP = "Salesforce/blip-image-captioning-base"  # Change this to use a different BLIP model
-MODEL_SCENE = "nateraw/vit-base-beans"  # Scene recognition model
-MODEL_OBJECTS = "facebook/detr-resnet-50"  # Object detection model
+MODEL_BLIP = "Salesforce/blip-image-captioning-base"
+MODEL_SCENE = "nateraw/vit-base-beans"
+MODEL_OBJECTS = "facebook/detr-resnet-50"
+
+# Model Cache Directory
+# This directory is used to store/download the models.
+# For example, if your download_models.py is in the utils folder,
+# then the models will be saved in ../models relative to utils.
+MODEL_CACHE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "models"))

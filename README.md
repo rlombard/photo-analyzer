@@ -130,28 +130,28 @@ The project includes **comprehensive unit tests** using `pytest`, covering:
 pip install pytest pillow requests
 ```
 
-### **2️⃣ Run All Tests
+### **2️⃣ Run All Tests**
 ```sh
 pytest tests/
 ```
 
-### **3️⃣ Run a Specific Test
+### **3️⃣ Run a Specific Test**
 ```sh
 pytest tests/tests.py
 ```
 
-### **4️⃣ View Detailed Test Output
+### **4️⃣ View Detailed Test Output**
 To see detailed logging and output for debugging, run:
 ```sh
 pytest -v tests/
 ```
 
-### **5️⃣ Run Tests with Coverage Report
+### **5️⃣ Run Tests with Coverage Report**
 ```sh
 pytest --cov=your_project_directory
 ```
 
-**✅ Ensure all tests pass before deploying your changes! **🚀
+✅ Ensure all tests pass before deploying your changes! 🚀
 ---
 
 ## 📂 Project Structure

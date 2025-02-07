@@ -2,14 +2,14 @@ import os
 
 # Immich API Configuration
 IMMICH_URL = "http://192.168.0.217:2283"
-API_KEY = "your_immich_api_key"
+API_KEY = "hAmOd1lwRTmvS2qnWkbumsWYDLYc6BQZ1ukCL9QfxSU"
 
 # PostgreSQL Database Configuration
 DB_CONFIG = {
     "dbname": "immich_db",
-    "user": "your_db_user",
-    "password": "your_db_password",
-    "host": "localhost",
+    "user": "root",
+    "password": "Lekker@rm.8db_postgres",
+    "host": "192.168.0.216",
     "port": "5432"
 }
 

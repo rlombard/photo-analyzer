@@ -1,23 +1,43 @@
-import requests
 from config import IMMICH_URL, API_KEY
 from utils.logger import logger
+from wrappers.api import ImmichApi
 
-def get_images():
+# Initialize the Immich API client
+immich_api = ImmichApi(IMMICH_URL, API_KEY)
+
+def get_all_assets():
     """
-    Fetch images from Immich API.
-    Logs success or failure.
+    Fetch all assets using ImmichApi, including metadata.
     """
-    headers = {"Authorization": f"Bearer {API_KEY}"}
     try:
-        response = requests.get(f"{IMMICH_URL}/api/assets", headers=headers)
-
-        if response.status_code == 200:
-            images = response.json()["assets"]
-            logger.info(f"📸 Successfully fetched {len(images)} images from Immich.")
-            return images
-        else:
-            logger.error(f"❌ Failed to fetch images. HTTP {response.status_code}: {response.text}")
-            return []
-    except requests.exceptions.RequestException as e:
-        logger.error(f"❌ Network error while fetching images: {e}")
+        assets = immich_api.get_all_assets()
+        for asset in assets:
+            asset['metadata'] = immich_api.get_asset_metadata(asset['id'])
+        return assets if assets else []
+    except Exception as e:
+        logger.error(f"Error fetching all assets: {e}")
         return []
+
+def download_image(image_id, save_path):
+    """
+    Download an image from Immich and save it to a specified path.
+    """
+    try:
+        image_data = immich_api.download_asset(image_id)
+        with open(save_path, 'wb') as file:
+            file.write(image_data)
+        return save_path
+    except Exception as e:
+        logger.error(f"Error downloading image {image_id}: {e}")
+        return None
+
+def update_image_metadata(image_id, metadata):
+    """
+    Update an image's metadata (tags) in Immich.
+    """
+    try:
+        response = immich_api.update_asset_metadata(image_id, metadata)
+        return response
+    except Exception as e:
+        logger.error(f"Error updating metadata for image {image_id}: {e}")
+        return None

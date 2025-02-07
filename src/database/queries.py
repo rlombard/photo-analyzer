@@ -1,5 +1,44 @@
-from database.connection import connect_db
+from database.connection import get_connection
 from utils.logger import logger
+
+def ensure_table_exists():
+    """Check if the table exists, and create it if not."""
+    conn = get_connection()
+    if not conn:
+        logger.error("❌ Database connection failed. Cannot check for table existence.")
+        return None
+
+    try:
+        cur = conn.cursor()
+        cur.execute("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name='image_metadata');")
+        table_exists = cur.fetchone()[0]
+
+        if not table_exists:
+            cur.execute("""
+                CREATE TABLE image_metadata (
+                    image_id VARCHAR(255) PRIMARY KEY,
+                    taken_at TIMESTAMP,
+                    latitude DOUBLE PRECISION,
+                    longitude DOUBLE PRECISION,
+                    caption TEXT,
+                    scene TEXT,
+                    object TEXT,
+                    faces JSONB,
+                    albums JSONB,
+                    location TEXT,
+                    processed_at TIMESTAMP DEFAULT NOW()
+                );
+            """)
+            conn.commit()
+            logger.info("✅ Table 'image_metadata' created successfully.")
+        else:
+            logger.info("✅ Table 'image_metadata' already exists.")
+
+        cur.close()
+        return conn
+    except Exception as e:
+        logger.error(f"❌ Error checking or creating table: {e}")
+        return None
 
 def get_existing_metadata(image_id):
     """
@@ -7,7 +46,7 @@ def get_existing_metadata(image_id):
     Logs success or warning if no record is found.
     """
     try:
-        conn = connect_db()
+        conn = ensure_table_exists()
         if not conn:
             logger.error("❌ Database connection failed. Cannot fetch metadata.")
             return None
@@ -34,7 +73,7 @@ def save_metadata(image_id, metadata):
     Logs when a new entry is created or an existing entry is updated.
     """
     try:
-        conn = connect_db()
+        conn = ensure_table_exists()
         if not conn:
             logger.error("❌ Database connection failed. Cannot save metadata.")
             return False

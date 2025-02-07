@@ -1,3 +1,33 @@
 2025-02-06 18:51:05,338 [INFO] ✅ BLIP model 'Salesforce/blip-image-captioning-base' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/models.
 2025-02-06 18:51:22,282 [INFO] ✅ Scene recognition model 'nateraw/vit-base-beans' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/models.
 2025-02-06 18:51:32,685 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/models.
+2025-02-07 08:53:42,592 [INFO] ✅ BLIP model 'Salesforce/blip-image-captioning-base' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 08:53:44,043 [INFO] ✅ Scene recognition model 'nateraw/vit-base-beans' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 08:53:45,435 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 08:54:47,978 [INFO] ✅ BLIP model 'Salesforce/blip-image-captioning-base' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 08:54:49,366 [INFO] ✅ Scene recognition model 'nateraw/vit-base-beans' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 08:54:50,638 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 08:55:27,005 [INFO] ✅ BLIP model 'Salesforce/blip-image-captioning-base' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 08:55:28,910 [INFO] ✅ Scene recognition model 'nateraw/vit-base-beans' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 08:55:30,168 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 09:12:25,887 [INFO] ✅ BLIP model 'Salesforce/blip-image-captioning-base' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 09:12:27,153 [INFO] ✅ Scene recognition model 'nateraw/vit-base-beans' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 09:12:28,357 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 09:12:52,403 [DEBUG] 🔍 Debug mode enabled: Logging set to DEBUG level.
+2025-02-07 09:12:57,493 [INFO] 📸 Starting image processing...
+2025-02-07 09:13:08,428 [ERROR] ❌ Failed to fetch images. HTTP 404: {"message":"Cannot GET /api/assets","error":"Not Found","statusCode":404,"correlationId":"jn2xla27"}
+2025-02-07 09:13:12,114 [INFO] ✅ No new images to process.
+2025-02-07 10:56:56,765 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 10:57:38,671 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 10:58:26,709 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 10:58:29,631 [INFO] ✅ Scene recognition model 'nateraw/vit-base-beans' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 10:59:55,172 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 10:59:56,460 [INFO] ✅ Scene recognition model 'nateraw/vit-base-beans' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 10:59:59,354 [INFO] ✅ BLIP model 'Salesforce/blip-image-captioning-base' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 11:00:42,264 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 11:00:43,567 [INFO] ✅ Scene recognition model 'nateraw/vit-base-beans' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 11:00:46,398 [INFO] ✅ BLIP model 'Salesforce/blip-image-captioning-base' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 11:01:46,074 [INFO] ✅ Object detection model 'facebook/detr-resnet-50' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 11:01:47,464 [INFO] ✅ Scene recognition model 'nateraw/vit-base-beans' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 11:01:50,553 [INFO] ✅ BLIP model 'Salesforce/blip-image-captioning-base' loaded successfully from cache directory /Users/rmlombard/Code/photo-analyzer/src/models.
+2025-02-07 11:01:50,558 [DEBUG] 🔍 Debug mode enabled: Logging set to DEBUG level.
